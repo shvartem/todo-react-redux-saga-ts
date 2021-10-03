@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button } from 'antd';
 // import ModalForm from '../../../Modal';
-import { TodoBody, TodoData } from '../types';
+import { TodoBody, TodoData } from '../../../../types';
 
 const ListItem = styled.li`
   list-style: none;

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { TodoBody } from '../types';
+import { TodoBody } from '../../../../types';
 
 const initialValue = { body: '' };
 

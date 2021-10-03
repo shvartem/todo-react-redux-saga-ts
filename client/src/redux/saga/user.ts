@@ -3,8 +3,14 @@ import {
 } from 'redux-saga/effects';
 import { actions } from '../slices';
 import { getData, postData } from '../tools';
+import { AuthData } from '../../types';
 
-function* loginUser({ payload }) {
+interface IAuthAction {
+  type: string;
+  payload: AuthData
+}
+
+function* loginUser({ payload }: IAuthAction): Generator {
   try {
     const loggedUser = yield call(postData, '/api/login', payload);
     yield put(actions.loginUserFullfilled(loggedUser));
@@ -13,7 +19,7 @@ function* loginUser({ payload }) {
   }
 }
 
-function* logoutUser() {
+function* logoutUser(): Generator {
   try {
     yield call(getData, '/api/logout');
     yield put(actions.logoutUserFullfilled());
@@ -22,7 +28,7 @@ function* logoutUser() {
   }
 }
 
-function* registerUser({ payload }) {
+function* registerUser({ payload }: IAuthAction): Generator {
   try {
     const loggedUser = yield call(postData, '/api/register', payload);
     yield put(actions.loginUserFullfilled(loggedUser));
@@ -31,7 +37,7 @@ function* registerUser({ payload }) {
   }
 }
 
-function* loginInitialUser() {
+function* loginInitialUser(): Generator {
   try {
     const loggedUser = yield call(getData, '/api/me');
     yield put(actions.loginUserFullfilled(loggedUser));

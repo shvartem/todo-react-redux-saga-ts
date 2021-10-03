@@ -8,3 +8,9 @@ export type TodoData = {
   completed: boolean;
   userId?: number;
 }
+
+export type AuthData = {
+  username?: string;
+  email: string;
+  password: string;
+}

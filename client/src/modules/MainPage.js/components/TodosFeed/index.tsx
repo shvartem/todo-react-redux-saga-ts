@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import TodoItem from '../TodoItem';
-import { TodoData } from '../types';
+import { TodoData } from '../../../../types';
 
 const List = styled.ul`
   margin: 30px 0;

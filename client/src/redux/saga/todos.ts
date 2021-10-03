@@ -5,8 +5,24 @@ import { actions } from '../slices';
 import {
   deleteData, getData, postData, editData,
 } from '../tools';
+import { TodoBody, TodoData } from '../../types';
 
-function* getAllTodos() {
+interface ICreateTodoAction {
+  type: string;
+  payload: TodoBody
+}
+
+interface IDeleteTodoAction {
+  type: string;
+  payload: { todoId: number }
+}
+
+interface IEditTodoAction {
+  type: string;
+  payload: TodoData
+}
+
+function* getAllTodos(): Generator {
   try {
     const allTodos = yield call(getData, '/api/todos');
     yield put(actions.getAllTodosFullfilled(allTodos));
@@ -15,7 +31,7 @@ function* getAllTodos() {
   }
 }
 
-function* createTodo({ payload }) {
+function* createTodo({ payload }: ICreateTodoAction): Generator {
   try {
     const newTodo = yield call(postData, '/api/todos', payload);
     yield put(actions.createTodoFullfilled(newTodo));
@@ -24,7 +40,7 @@ function* createTodo({ payload }) {
   }
 }
 
-function* deleteTodo({ payload }) {
+function* deleteTodo({ payload }: IDeleteTodoAction): Generator {
   try {
     yield call(deleteData, '/api/todos/', payload.todoId);
     yield put(actions.deleteTodoFullfilled(payload.todoId));
@@ -33,7 +49,7 @@ function* deleteTodo({ payload }) {
   }
 }
 
-function* editTodo({ payload }) {
+function* editTodo({ payload }: IEditTodoAction): Generator {
   try {
     yield call(editData, '/api/todos/', payload);
     yield put(actions.editTodoFullfilled(payload));

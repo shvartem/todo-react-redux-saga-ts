@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import React from 'react';
 import { Layout, Menu, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -10,7 +11,7 @@ interface INavbar {
   isAuth: boolean;
 }
 
-const Navbar = ({ isAuth }) => {
+const Navbar: React.FC<INavbar> = ({ isAuth }) => {
   const dispatch = useDispatch();
 
   function logoutHandler() {
